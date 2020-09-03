@@ -1,0 +1,20 @@
+# create the service
+# sudo touch /etc/systemd/system/dahuaevent.service
+# edit the file with sudo nano /etc/systemd/system/dahuaevent.service
+# amend the content below according to your setup
+# sudo systemctl daemon-reload
+# sudo systemctl enable dahuaevent.service
+# sudo systemctl start dahuaevent.service
+
+[Unit]
+Description=Dahua event listener
+After=network-online.target
+
+[Service]
+PIDFile=/var/run/dahuaevent.pid
+ExecStart=/usr/bin/php -f "/home/homeassistant/.homeassistant/php_scripts/dahuaeventhandler.php"  >/dev/null 2>&1 &
+Restart=on-failure
+RestartSec=60s
+
+[Install]
+WantedBy=multi-user.target
