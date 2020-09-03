@@ -6,6 +6,8 @@ Credits goes to @riogrande75 who wrote that complicated integration Original cod
 Make some modifications to your Dahua VTO doorbell
 1. Enable Motion detection (if you want to listen to video detection events)
 2. Enable the SIP Server. You can specify the same IP address as your doorbell. Only with this option available you the script will listen to events when you press the caller button
+For the php event handler to work you need to have composer installed. Install the php/mqtt library with:
+php composer.phar require php-mqtt/client
 # Further useful information:
 Dahua event API documentation is part of the repository
 New firmware can be found here: https://www.dahuasecurity.com/support/downloadCenter/firmware?child=607
