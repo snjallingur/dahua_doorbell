@@ -2,6 +2,14 @@
 - platform: mqtt
   name: Doorbell motion
   state_topic: "homeassistant/dahua/motion"
+  payload_on: "on"
+  payload_off: "off"
+  off_delay: 30
+  device_class: motion
 - platform: mqtt
   name: Doorbell ringing
   state_topic: "homeassistant/dahua/call"
+  payload_on: "on"
+  payload_off: "off"
+  off_delay: 30
+  device_class: vibration
