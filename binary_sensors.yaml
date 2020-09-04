@@ -1,0 +1,7 @@
+# Dahua VTO doorbell
+- platform: mqtt
+  name: Doorbell motion
+  state_topic: "homeassistant/dahua/motion"
+- platform: mqtt
+  name: Doorbell ringing
+  state_topic: "homeassistant/dahua/call"
