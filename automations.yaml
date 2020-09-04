@@ -1,0 +1,24 @@
+- id: '1599215917657'
+  alias: Doorbell rings
+  description: ''
+  trigger:
+  - entity_id: binary_sensor.doorbell_ringing
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.google_home_guest
+      media_content_id: http://snjallingur.is/sounds/doorbell3.mp3
+      media_content_type: mp3
+    entity_id: media_player.google_home_guest
+    service: media_player.play_media
+  - delay: 00:00:06
+  - data:
+      entity_id: media_player.google_home_guest
+      media_content_id: http://snjallingur.is/sounds/doorbell3.mp3
+      media_content_type: mp3
+    entity_id: media_player.google_home_guest
+    service: media_player.play_media
+  mode: single
