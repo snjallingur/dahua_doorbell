@@ -286,11 +286,8 @@ class Dahua_Functions
     elseif($eventCode == 'CallNoAnswered'){
         logging("Event Call from VTO");
         //print_r($eventData);
-        $this->SaveSnapshot();
-        $mqtt = new \PhpMqtt\Client\MQTTClient('xxx.xxx.xxx.xxx', '1883', 'dahuaevent');
-        $mqtt->connect();
-        $mqtt->publish('homeassistant/dahua/call', 'on', 0);
-        $mqtt->close();
+        $this->SaveSnapshot('/mnt/snjallingur/Videos/doorbell');
+	$this->mqtt_publish('homeassistant/dahua/call');
 	}
    
     elseif($eventCode == 'IgnoreInvite'){
@@ -299,11 +296,8 @@ class Dahua_Functions
 	elseif($eventCode == 'VideoMotion'){
 		logging("Event VideoMotion");
         	//print_r($eventData);
-        	$mqtt = new \PhpMqtt\Client\MQTTClient('xxx.xxx.xxx.xxx', '1883', 'dahuaevent');
-        	$mqtt->connect();
-        	$mqtt->publish('homeassistant/dahua/motion', 'on', 0);
-        	$mqtt->close();
-		$this->SaveSnapshot();
+		$this->mqtt_publish('homeassistant/dahua/motion')
+		$this->SaveSnapshot('/mnt/snjallingur/Videos/doorbell');
 	}
 	elseif($eventCode == 'RtspSessionDisconnect'){
 		if($eventList['Action'] == 'Start'){
@@ -407,7 +401,7 @@ class Dahua_Functions
 	return true;
 	}
 
-    function SaveSnapshot($path="/mnt/snjallingur/Videos/doorbell")
+    function SaveSnapshot($path)
 	{
 	    $filename = $path."/doorbell_".date("Y-m-d_H-i-s").".jpg";
 	    $fp = fopen($filename, 'wb');
@@ -424,5 +418,12 @@ class Dahua_Functions
 	    fclose($fp);
 	    copy($filename, $path."/Doorbell.jpg");
     }
+	function mqtt_publish($topic) {
+        	$mqtt = new \PhpMqtt\Client\MQTTClient('192.168.132.236', '1883', 'dahuaevent');
+        	$mqtt->connect();
+        	$mqtt->publish($topic, 'on', 0);
+        	$mqtt->close();
+    }
+	
 }
 ?>
