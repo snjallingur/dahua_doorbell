@@ -31,7 +31,7 @@ class Dahua_Functions
     private $FakeIPaddr = '(null)';         # WebGUI: mask our real IP
     private $clientType = '';               # WebGUI: We do not show up in logs or online users
     private $keepAliveInterval = 60;
-    private $lastKeepAlive = 0;
+    private $lastKeepAlive = 20;		
 
     function Dahua_Functions($host, $user, $pass)
     {
