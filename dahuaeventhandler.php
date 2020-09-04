@@ -11,7 +11,7 @@ require __DIR__ . '/vendor/autoload.php';
 
 $debug = true;
 echo "<** Dahua VTO Eventempfaenger START **>\n";
-$Dahua = new Dahua_Functions("192.168.132.222", "admin", "mypassword"); # VTO's IP and user/pwd
+$Dahua = new Dahua_Functions("192.xxx.xxx.xxx", "admin", "mypassword"); # VTO's IP and user/pwd
 $status = $Dahua->Main();
 logging("All done");
 function logging($text){
