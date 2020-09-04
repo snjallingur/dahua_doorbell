@@ -9,13 +9,9 @@ Need to enable SIP Server in order to get Call events
 */
 require __DIR__ . '/vendor/autoload.php';
 
-$server   = '192.168.132.236';
-$port     = 1883;
-$clientId = 'test-publisher';
-
 $debug = true;
 echo "<** Dahua VTO Eventempfaenger START **>\n";
-$Dahua = new Dahua_Functions("192.168.132.222", "admin", "SK26dahua!"); # VTO's IP and user/pwd
+$Dahua = new Dahua_Functions("192.168.132.222", "admin", "mypassword"); # VTO's IP and user/pwd
 $status = $Dahua->Main();
 logging("All done");
 function logging($text){
@@ -291,7 +287,7 @@ class Dahua_Functions
         logging("Event Call from VTO");
         //print_r($eventData);
         $this->SaveSnapshot();
-        $mqtt = new \PhpMqtt\Client\MQTTClient('192.168.132.236', '1883', 'dahuaevent');
+        $mqtt = new \PhpMqtt\Client\MQTTClient('xxx.xxx.xxx.xxx', '1883', 'dahuaevent');
         $mqtt->connect();
         $mqtt->publish('homeassistant/dahua/call', 'on', 0);
         $mqtt->close();
@@ -302,14 +298,11 @@ class Dahua_Functions
 	}
 	elseif($eventCode == 'VideoMotion'){
 		logging("Event VideoMotion");
-        //print_r($eventData);
-        $server   = '192.168.132.236';
-        $port     = 1883;
-        $clientId = 'test-publisher';
-        $mqtt = new \PhpMqtt\Client\MQTTClient($server, $port, $clientId);
-        $mqtt->connect();
-        $mqtt->publish('homeassistant/dahua/motion', 'on', 0);
-        $mqtt->close();
+        	//print_r($eventData);
+        	$mqtt = new \PhpMqtt\Client\MQTTClient('xxx.xxx.xxx.xxx', '1883', 'dahuaevent');
+        	$mqtt->connect();
+        	$mqtt->publish('homeassistant/dahua/motion', 'on', 0);
+        	$mqtt->close();
 		$this->SaveSnapshot();
 	}
 	elseif($eventCode == 'RtspSessionDisconnect'){
