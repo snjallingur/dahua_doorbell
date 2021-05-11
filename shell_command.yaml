@@ -1,0 +1,1 @@
+dahua_activate_motion: curl -g --request GET 'http://192.168.xxx.xxx/cgi-bin/configManager.cgi?action=setConfig&MotionDetect[0].Enable=true&MotionDetect[0].Level=5&MotionDetect[0].EventHandler.Delay=1' --digest -u admin:yourpass
